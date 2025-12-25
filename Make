@@ -1,0 +1,11 @@
+# Stop running editors
+pkill -f "edtr" 2>/dev/null
+
+# Remove shared memory and message queues
+rm -f /dev/shm/synctext_registry /tmp/synctext_registry 2>/dev/null
+rm -f /dev/mqueue/queue_* 2>/dev/null
+
+# Recompile
+g++ -o edtr proj.cpp -lrt -lpthread -std=c++11
+
+echo "Clean, Reset complete."
